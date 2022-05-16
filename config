@@ -1,0 +1,22 @@
+[global]
+base_path = /home/ubuntu/system-image/
+channels = test
+gpg_key_path = secret/gpg/keys/
+gpg_keyring_path = secret/gpg/keyrings/
+publish_path = /var/www/
+state_path = state/
+public_fqdn = system-image.test.com
+public_http_port = 80
+public_https_port = 443
+
+[channel_test]
+type = auto
+versionbase = 1
+fullcount = 15
+files = ubuntu, device, custom-savilerow, keyring, version
+file_ubuntu = remote-system-image;https://system-image.ubuntu.com;trusty-proposed;ubuntu
+file_device = remote-system-image;https://system-image.ubuntu.com;trusty-proposed;device;keyring=archive-master
+file_custom-savilerow = http;https://jenkins.qa.ubuntu.com/job/savilerow-watch/lastSuccessfulBuild/artifact/custom.tar.xz;name=custom-savilerow,monitor=https://jenkins.qa.ubuntu.com/job/savilerow-watch/lastSuccessfulBuild/artifact/build_number
+file_keyring = keyring;archive-master
+file_version = version
+
